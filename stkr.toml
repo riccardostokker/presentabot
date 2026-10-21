@@ -1,0 +1,51 @@
+# Project Policy Owned By The Hub
+# Native manifests own package metadata; mise owns executable recipes.
+# Defaults stay implicit. Commented sections do not declare configuration.
+
+# === Project === #
+
+[project]
+name = "presentabot"
+visibility = "public"
+platforms = ["linux", "windows"]
+
+[tools]
+include = ["taplo"]
+
+# === Repository === #
+
+# === CI === #
+
+# === Agents === #
+
+# === Hooks === #
+
+# === Conventions === #
+
+# === Templates === #
+
+# === Release === #
+
+# Raw CLI Products And Explicit ZIP Bundles Are Optional Authored Package Policy.
+# [[package.executables]]
+# package = "cargo-example"
+# command = "cargo-example"
+# name = "cargo-example"
+# targets = { linux-x86_64 = "x86_64-unknown-linux-gnu" }
+# release = true
+# verify = ["--version"]
+# installers = []
+
+# [[package.bundles]]
+# language = "rust"
+# name = "plugins-{version}-{target}.zip"
+# profiles = ["dev", "release"]
+# targets = ["linux-x86_64"]
+# release = true
+# inputs = [{ path = "target/build/{profile}/{target}/plugins/example.bin", destination = "plugins/example.bin" }]
+
+# === Documentation === #
+
+# === Screenshots === #
+
+# === PyO3 === #

@@ -1,0 +1,8 @@
+
+# Hub Machine State
+/.stkr/state/
+/.stkr/tests/
+/.stkr/benchmarks/
+
+# OpenSpec Changes And Specs Are Tracked; Uncomment To Keep Them Local.
+# /openspec/

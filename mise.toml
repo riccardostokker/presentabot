@@ -1,0 +1,92 @@
+# === Settings === #
+
+[settings]
+lockfile = true
+
+# === Tools === #
+
+[tools]
+# Languages And Runtimes
+node = "26.11.1"
+
+# Formatting And Linting
+"aqua:rhysd/actionlint" = "1.7.12"
+"npm:@fission-ai/openspec" = "1.14.3"
+taplo = "0.10.0"
+
+# Release And Signing
+gh = "2.102.0"
+git-cliff = "2.14.2"
+glab = "1.123.0"
+
+# Project Statistics
+"aqua:boyter/scc" = "4.1.0"
+
+# === Environment === #
+
+[env]
+
+# === Variables === #
+
+[vars]
+
+# === Prepare === #
+
+# === Format === #
+
+[tasks.format]
+description = "Format Every Language"
+usage = 'flag "--check"'
+depends = ["format:toml {% if usage.check %}--check{% endif %}"]
+
+[tasks."format:toml"]
+description = "Format TOML"
+usage = 'flag "--check"'
+run = "git ls-files -z -- '*.toml' | xargs -0 taplo fmt --option column_width=140{% if usage.check %} --check{% endif %}"
+
+# === Lint === #
+
+[tasks.lint]
+description = "Lint Every Language"
+depends = []
+
+# === Check === #
+
+[tasks.check]
+description = "Check Every Language And Conventions"
+run = [{ task = "check:repository" }]
+
+[tasks."check:repository"]
+description = "Check Repository Configuration And Conventions"
+run = [{ task = "format:toml --check" }]
+
+# === Build === #
+
+# === Dev === #
+
+# === Test === #
+
+# === Bench === #
+
+# === Docs === #
+
+# === Package === #
+
+# === CI === #
+
+[tasks.ci]
+description = "Run The CI Flow Locally"
+usage = 'flag "--profile <profile>" default="dev"'
+run = [{ task = "check" }]
+
+# === Release === #
+
+# === Housekeeping === #
+
+[tasks.housekeeping]
+description = "Clean Owned Build Outputs And State"
+run = "stkr project housekeeping"
+
+[tasks."housekeeping:stats"]
+description = "Count Source Lines"
+run = "scc"
